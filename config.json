@@ -1,0 +1,8 @@
+{
+    "screen_width": 1280,
+    "screen_height": 720,
+    "virtual_width": 320,
+    "virtual_height": 180,
+    "max_fps": 60,
+    "cell_size": 16
+}
