@@ -5,6 +5,7 @@ Game::Game(Config& config)
     : m_config(config)
     , m_spriteManager(config)
 {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetTraceLogLevel(LOG_ERROR);
     InitWindow(config.screenWidth, config.screenHeight, "Turn game");
     SetTargetFPS(config.maxFps);
@@ -34,15 +35,18 @@ void Game::draw()
     BeginTextureMode(m_renderTexture);
 
     ClearBackground(GRAY);
-    DrawRectangle(0, 0, 16, 16, PURPLE);
     m_spriteManager.draw("builder", 64, 32);
+    m_spriteManager.draw("goblin", 48, 32);
+    m_spriteManager.draw("fighter", 32, 32);
 
     EndTextureMode();
 
     BeginDrawing();
+
     ClearBackground(BLACK);
 
     DrawTexturePro(m_renderTexture.texture, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, m_renderRec, { 0.f, 0.f }, 0.f, WHITE);
+    DrawFPS(0, 0);
     EndDrawing();
 }
 

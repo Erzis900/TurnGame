@@ -20,6 +20,4 @@ private:
     RenderTexture2D m_renderTexture;
     Rectangle m_renderRec;
     float m_scale;
-
-    Camera2D m_cam;
 };
