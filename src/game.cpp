@@ -5,7 +5,7 @@ Game::Game(Config& config)
     : m_config(config)
     , m_spriteManager(config)
     , m_map(config)
-    , m_entityManager(m_spriteManager)
+    , m_entityManager(config, m_spriteManager)
     , m_inputManager(config, m_entityManager)
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -84,16 +84,4 @@ void Game::updateRenderRec()
     m_renderRec.height = m_config.virtualHeight * m_scale;
     m_renderRec.x = (GetScreenWidth() - m_renderRec.width) / 2.f;
     m_renderRec.y = (GetScreenHeight() - m_renderRec.height) / 2.f;
-}
-
-void Game::drawGrid(int rows, int cols)
-{
-    Color c = GRAY;
-    for (int i = 1; i < cols; i++) {
-        DrawLine(i * m_config.cellSize, 0, i * m_config.cellSize, m_config.screenHeight, c);
-    }
-
-    for (int j = 1; j < rows; j++) {
-        DrawLine(0, j * m_config.cellSize, m_config.screenWidth, j * m_config.cellSize, c);
-    }
 }

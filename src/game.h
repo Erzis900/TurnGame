@@ -15,7 +15,6 @@ private:
     void update();
     void draw();
     void updateRenderRec();
-    void drawGrid(int rows, int cols);
 
     Config& m_config;
     SpriteManager m_spriteManager;
