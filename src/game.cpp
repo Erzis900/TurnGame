@@ -19,6 +19,14 @@ Game::Game(Config& config)
 
     m_spriteManager.loadSheet("../assets/sprites.png");
     m_map.loadSheet("../assets/map/tiles.png");
+
+    m_mapRenderTexture = LoadRenderTexture(config.virtualWidth, config.virtualHeight);
+    SetTextureFilter(m_mapRenderTexture.texture, TEXTURE_FILTER_POINT);
+
+    BeginTextureMode(m_renderTexture);
+    ClearBackground(GRAY);
+    m_map.draw();
+    EndTextureMode();
 }
 
 Game::~Game()
@@ -36,9 +44,7 @@ void Game::draw()
 {
     BeginTextureMode(m_renderTexture);
 
-    ClearBackground(GRAY);
-
-    m_map.draw();
+    DrawTexturePro(m_mapRenderTexture.texture, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, m_renderRec, { 0.f, 0.f }, 0.f, WHITE);
 
     m_spriteManager.draw("builder", 64, 32);
     m_spriteManager.draw("goblin", 48, 32);

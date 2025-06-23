@@ -20,6 +20,7 @@ private:
     Map m_map;
 
     RenderTexture2D m_renderTexture;
+    RenderTexture2D m_mapRenderTexture;
     Rectangle m_renderRec;
     float m_scale;
 };
