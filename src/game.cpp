@@ -4,6 +4,7 @@
 Game::Game(Config& config)
     : m_config(config)
     , m_spriteManager(config)
+    , m_map(config)
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetTraceLogLevel(LOG_ERROR);
@@ -17,6 +18,7 @@ Game::Game(Config& config)
     m_renderRec = { 0.f, 0.f, config.virtualWidth * m_scale, config.virtualHeight * m_scale };
 
     m_spriteManager.loadSheet("../assets/sprites.png");
+    m_map.loadSheet("../assets/map/tiles.png");
 }
 
 Game::~Game()
@@ -35,6 +37,9 @@ void Game::draw()
     BeginTextureMode(m_renderTexture);
 
     ClearBackground(GRAY);
+
+    m_map.draw();
+
     m_spriteManager.draw("builder", 64, 32);
     m_spriteManager.draw("goblin", 48, 32);
     m_spriteManager.draw("fighter", 32, 32);

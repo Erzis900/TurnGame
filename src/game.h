@@ -1,4 +1,5 @@
 #include "config.h"
+#include "map.h"
 #include "spriteManager.h"
 #include <raylib.h>
 
@@ -16,6 +17,7 @@ private:
 
     Config& m_config;
     SpriteManager m_spriteManager;
+    Map m_map;
 
     RenderTexture2D m_renderTexture;
     Rectangle m_renderRec;
