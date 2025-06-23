@@ -3,9 +3,6 @@
 #include <raylib.h>
 #include <string>
 
-#define MAP_WIDTH 20
-#define MAP_HEIGHT 12
-
 using json = nlohmann::json;
 
 class Map {

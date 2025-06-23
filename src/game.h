@@ -1,4 +1,6 @@
 #include "config.h"
+#include "entityManager.h"
+#include "inputManager.h"
 #include "map.h"
 #include "spriteManager.h"
 #include <raylib.h>
@@ -18,6 +20,8 @@ private:
     Config& m_config;
     SpriteManager m_spriteManager;
     Map m_map;
+    InputManager m_inputManager;
+    EntityManager m_entityManager;
 
     RenderTexture2D m_renderTexture;
     RenderTexture2D m_mapRenderTexture;

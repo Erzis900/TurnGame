@@ -1,3 +1,4 @@
+#pragma once
 #include <raylib.h>
 #include <string>
 #include <unordered_map>
@@ -9,7 +10,7 @@ public:
     SpriteManager(Config& config);
 
     void loadSheet(const std::string& path);
-    void draw(const std::string& name, int x, int y);
+    void draw(const std::string& name, int row, int col);
 
 private:
     Vector2 getPosition(const std::string& name);

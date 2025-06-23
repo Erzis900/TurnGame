@@ -5,6 +5,8 @@ Game::Game(Config& config)
     : m_config(config)
     , m_spriteManager(config)
     , m_map(config)
+    , m_inputManager(config)
+    , m_entityManager(m_spriteManager)
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetTraceLogLevel(LOG_ERROR);
@@ -23,8 +25,7 @@ Game::Game(Config& config)
     m_mapRenderTexture = LoadRenderTexture(config.virtualWidth, config.virtualHeight);
     SetTextureFilter(m_mapRenderTexture.texture, TEXTURE_FILTER_POINT);
 
-    BeginTextureMode(m_renderTexture);
-    ClearBackground(GRAY);
+    BeginTextureMode(m_mapRenderTexture);
     m_map.draw();
     EndTextureMode();
 }
@@ -38,17 +39,22 @@ Game::~Game()
 void Game::update()
 {
     float dt = GetFrameTime();
+    m_inputManager.update();
 }
 
 void Game::draw()
 {
     BeginTextureMode(m_renderTexture);
 
-    DrawTexturePro(m_mapRenderTexture.texture, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, m_renderRec, { 0.f, 0.f }, 0.f, WHITE);
+    ClearBackground(GRAY);
+    DrawTexturePro(m_mapRenderTexture.texture, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, { 0.f, 0.f }, 0.f, WHITE);
 
-    m_spriteManager.draw("builder", 64, 32);
-    m_spriteManager.draw("goblin", 48, 32);
-    m_spriteManager.draw("fighter", 32, 32);
+    m_entityManager.draw();
+    // m_spriteManager.draw("builder", 64, 32);
+    // m_spriteManager.draw("goblin", 48, 32);
+    // m_spriteManager.draw("fighter", 32, 32);
+
+    m_inputManager.draw();
 
     EndTextureMode();
 

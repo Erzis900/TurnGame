@@ -1,4 +1,5 @@
 #include "map.h"
+#include "constants.h"
 #include <fstream>
 #include <iostream>
 #include <json.hpp>

@@ -36,21 +36,21 @@ void SpriteManager::loadSheet(const std::string& path)
     m_sheet = LoadTexture(path.c_str());
 }
 
-void SpriteManager::draw(const std::string& name, int x, int y)
+void SpriteManager::draw(const std::string& name, int row, int col)
 {
     Vector2 pos = getPosition(name);
     Rectangle src = {
         pos.x,
         pos.y,
-        m_config.cellSize,
-        m_config.cellSize
+        float(m_config.cellSize),
+        float(m_config.cellSize)
     };
 
     Rectangle dst = {
-        x,
-        y,
-        m_config.cellSize,
-        m_config.cellSize
+        col * float(m_config.cellSize),
+        row * float(m_config.cellSize),
+        float(m_config.cellSize),
+        float(m_config.cellSize)
     };
 
     DrawTexturePro(m_sheet, src, dst, { 0.f, 0.f }, 0.f, WHITE);
