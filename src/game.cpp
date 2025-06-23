@@ -5,8 +5,8 @@ Game::Game(Config& config)
     : m_config(config)
     , m_spriteManager(config)
     , m_map(config)
-    , m_inputManager(config)
     , m_entityManager(m_spriteManager)
+    , m_inputManager(config, m_entityManager)
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetTraceLogLevel(LOG_ERROR);
@@ -50,10 +50,6 @@ void Game::draw()
     DrawTexturePro(m_mapRenderTexture.texture, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, { 0.f, 0.f, float(m_config.virtualWidth), float(-m_config.virtualHeight) }, { 0.f, 0.f }, 0.f, WHITE);
 
     m_entityManager.draw();
-    // m_spriteManager.draw("builder", 64, 32);
-    // m_spriteManager.draw("goblin", 48, 32);
-    // m_spriteManager.draw("fighter", 32, 32);
-
     m_inputManager.draw();
 
     EndTextureMode();
